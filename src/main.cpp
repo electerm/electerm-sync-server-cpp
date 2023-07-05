@@ -20,8 +20,9 @@ int main() {
 
         std::string jwt_secret = dt["JWT_SECRET"];
         std::string file_store_path = dt["FILE_STORE_PATH"];
+        std::string ids = dt["JWT_USERS"];
         auto token = req.get_header_value("Authorization");
-        auto jwt_data = verify_jwt(token.substr(7), jwt_secret); // Strip "Bearer " prefix
+        auto jwt_data = verify_jwt(token.substr(7), jwt_secret, ids); // Strip "Bearer " prefix
         auto str = picojson::value(jwt_data).serialize();
 
         if (jwt_data.count("id") <= 0) {

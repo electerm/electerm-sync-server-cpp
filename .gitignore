@@ -37,3 +37,4 @@
 build
 cpp-dotenv
 .DS_Store
+*.json
