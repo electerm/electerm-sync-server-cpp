@@ -3,6 +3,8 @@ cd `dirname $0`
 cd ..
 rm -rf src/include
 mkdir src/include
+# export http_proxy=socks5://127.0.0.1:1080
+# export https_proxy=socks5://127.0.0.1:1080
 git clone https://github.com/CrowCpp/Crow.git
 cp -r Crow/include src/include/crow
 rm -rf Crow

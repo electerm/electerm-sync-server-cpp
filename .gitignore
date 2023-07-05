@@ -35,7 +35,10 @@
 .vscode
 .env
 build
-cpp-dotenv
+/cpp-dotenv
 .DS_Store
 *.json
-test-build
+/test-build
+/Crow
+/picojson
+/jwt-cpp

@@ -24,5 +24,6 @@ jobs:
       - name: Install dependencies
         run: sudo apt-get update && sudo apt-get install -y libboost-filesystem-dev
       - run: ./scripts/init
+      - run: pwd
       - run: ./scripts/build
       - run: ./scripts/test
