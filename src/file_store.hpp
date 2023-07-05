@@ -2,7 +2,7 @@
 
 #include <string>
 #include <fstream>
-#include <picojson/picojson.h>
+#include <jwt-cpp/picojson/picojson.h>
 #include <boost/filesystem.hpp>
 
 namespace fs = boost::filesystem;

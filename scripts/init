@@ -3,14 +3,11 @@ cd `dirname $0`
 cd ..
 rm -rf src/include
 mkdir src/include
-# export http_proxy=socks5://127.0.0.1:1080
-# export https_proxy=socks5://127.0.0.1:1080
-git clone https://github.com/CrowCpp/Crow.git
+export http_proxy=socks5://127.0.0.1:1080
+export https_proxy=socks5://127.0.0.1:1080
+git clone --depth 1 https://github.com/CrowCpp/Crow.git
 cp -r Crow/include src/include/crow
 rm -rf Crow
-git clone https://github.com/Thalhammer/jwt-cpp.git
+git clone --depth 1 https://github.com/Thalhammer/jwt-cpp.git
 cp -r jwt-cpp/include src/include/jwt-cpp
 rm -rf jwt-cpp
-git clone https://github.com/kazuho/picojson.git
-cp -r picojson src/include/picojson
-rm -rf picojson
