@@ -1,0 +1,14 @@
+#!/bin/bash
+cd `dirname $0`
+cd ..
+rm -rf src/include
+mkdir src/include
+git clone https://github.com/CrowCpp/Crow.git
+cp -r Crow/include src/include/crow
+rm -rf Crow
+git clone https://github.com/Thalhammer/jwt-cpp.git
+cp -r jwt-cpp/include src/include/jwt-cpp
+rm -rf jwt-cpp
+git clone https://github.com/kazuho/picojson.git
+cp -r picojson/include src/include/picojson
+rm -rf picojson

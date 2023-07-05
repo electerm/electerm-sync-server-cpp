@@ -30,3 +30,10 @@
 *.exe
 *.out
 *.app
+/temp/
+/src/include
+.vscode
+.env
+build
+cpp-dotenv
+.DS_Store
