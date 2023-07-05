@@ -25,5 +25,5 @@ jobs:
         run: sudo apt-get update && sudo apt-get install -y libboost-filesystem-dev
       - run: ./scripts/init
       - run: pwd
-      - run: ./scripts/build.sh
+      - run: ./scripts/build
       - run: ./scripts/test
