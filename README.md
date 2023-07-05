@@ -40,12 +40,12 @@ cp sample.env .env
 ## Test
 
 ```bash
-gradlew test
+./scripts/test
 ```
 
 ## Write your own data store
 
-Just take [src/fileStore.cpp](src/fileStore.cpp) as an example, write your own read/write method
+Just take [src/file_store.hpp](src/file_store.hpp) as an example, write your own read/write method
 
 ## License
 
