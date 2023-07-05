@@ -1,6 +1,6 @@
 # cpp Electerm sync server
 
-[![Build Status](https://github.com/electerm/electerm-sync-server-c'p'p/actions/workflows/linux.yml/badge.svg)](https://github.com/electerm/electerm-sync-server-cpp/actions)
+[![Build Status](https://github.com/electerm/electerm-sync-server-cpp/actions/workflows/linux.yml/badge.svg)](https://github.com/electerm/electerm-sync-server-cpp/actions)
 
 A simple electerm data sync server.
 

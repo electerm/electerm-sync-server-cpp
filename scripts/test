@@ -1,5 +1,12 @@
 #!/bin/bash
+set -e
 cd `dirname $0`
 cd ..
-cd build
-ctest
+rm -rf test-build
+
+mkdir -p test-build
+cd test-build
+cmake ../test -DCROW_FEATURES="ssl;compression"
+make -j12
+./test_file_store
+echo "Test succeed"
