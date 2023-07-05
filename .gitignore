@@ -34,7 +34,7 @@
 /src/include
 .vscode
 .env
-build
+/build
 /cpp-dotenv
 .DS_Store
 *.json
