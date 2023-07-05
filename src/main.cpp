@@ -1,6 +1,6 @@
 #include <crow.h>
 #include <jwt-cpp/jwt.h>
-#include <jwt-cpp/picojson/picojson.h>
+#include <picojson/picojson.h>
 #include "jwt.hpp"
 #include "file_store.hpp"
 #include "dotenv.hpp"

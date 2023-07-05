@@ -6,8 +6,8 @@ mkdir src/include
 # export http_proxy=socks5://127.0.0.1:1080
 # export https_proxy=socks5://127.0.0.1:1080
 git clone --depth 1 https://github.com/CrowCpp/Crow.git
-cp -r Crow/include src/include/crow
+cp -r Crow/include/* src/include/
 rm -rf Crow
 git clone --depth 1 https://github.com/Thalhammer/jwt-cpp.git
-cp -r jwt-cpp/include src/include/jwt-cpp
+cp -r jwt-cpp/include/* src/include/
 rm -rf jwt-cpp
