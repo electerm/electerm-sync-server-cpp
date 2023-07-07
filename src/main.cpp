@@ -36,7 +36,9 @@ int main() {
             };
             return crow::response(r);
         }
-
+        if (req.method == crow::HTTPMethod::Post) {
+            return crow::response("test ok");
+        }
         if (req.method == crow::HTTPMethod::Put) {
             auto r = FileStore::writeToFile(req.body, uid, file_store_path);
             if (!r) {
