@@ -30,6 +30,7 @@ cp sample.env .env
 
 # would show something like
 # server running at http://127.0.0.1:7837
+# Then you can use http://127.0.0.1:7837/api/sync as API Url in electerm custom sync
 
 # in electerm sync settings, set custom sync server with:
 # server url: http://127.0.0.1:7837
