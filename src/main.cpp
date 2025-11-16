@@ -15,7 +15,7 @@ int main() {
     std::string host = dt["HOST"];
     uint16_t port = static_cast<uint16_t>(std::stoi(port_str));
     CROW_ROUTE(app, "/api/sync")
-    .methods("GET"_method, "PUT"_method)
+    .methods("GET"_method, "PUT"_method, "POST"_method)
     ([&dt](const crow::request& req) {
 
         std::string jwt_secret = dt["JWT_SECRET"];
@@ -23,16 +23,27 @@ int main() {
         std::string ids = dt["JWT_USERS"];
         auto token = req.get_header_value("Authorization");
         auto jwt_data = verify_jwt(token.substr(7), jwt_secret, ids); // Strip "Bearer " prefix
-        auto str = picojson::value(jwt_data).serialize();
 
-        if (jwt_data.count("id") <= 0) {
-            return crow::response(401, str);
+        if (jwt_data.count("error") > 0) {
+            std::string error_msg = jwt_data["error"].get<std::string>();
+            if (error_msg == "Invalid id") {
+                picojson::object res;
+                res["status"] = picojson::value("error");
+                res["message"] = picojson::value("Unauthorized!");
+                return crow::response(401, picojson::value(res).serialize());
+            } else {
+                picojson::object res;
+                res["status"] = picojson::value("error");
+                res["message"] = picojson::value("Invalid token");
+                return crow::response(422, picojson::value(res).serialize());
+            }
         }
+
         std::string uid = jwt_data["id"].get<std::string>();
         if (req.method == crow::HTTPMethod::Get) {
             auto r = FileStore::readFromFile(uid, file_store_path);
             if (r == "404") {
-                return crow::response(404, "404");
+                return crow::response(404, "File not found");
             };
             return crow::response(r);
         }
@@ -50,6 +61,28 @@ int main() {
         // Method is other than GET and PUT, which should not happen due to the route configuration
         return crow::response(405);
     });
+
+    CROW_ROUTE(app, "/test")
+    .methods("GET"_method)
+    ([]() {
+        return "ok";
+    });
+
+    std::cout << "Electerm sync server starting..." << std::endl;
+    std::cout << "Server will be available at: http://" << host << ":" << port << std::endl;
+    std::cout << std::endl;
+    std::cout << "API Endpoints:" << std::endl;
+    std::cout << "  GET  /api/sync  - Retrieve user data (requires JWT auth)" << std::endl;
+    std::cout << "  POST /api/sync  - Test endpoint (requires JWT auth)" << std::endl;
+    std::cout << "  PUT  /api/sync  - Store user data (requires JWT auth)" << std::endl;
+    std::cout << "  GET  /test     - Health check endpoint" << std::endl;
+    std::cout << std::endl;
+    std::cout << "To use with Electerm:" << std::endl;
+    std::cout << "  1. In Electerm sync settings, select 'Custom sync server'" << std::endl;
+    std::cout << "  2. Set Server URL: http://" << host << ":" << port << std::endl;
+    std::cout << "  3. Set JWT_SECRET: " << dt["JWT_SECRET"] << std::endl;
+    std::cout << "  4. Set JWT_USER_NAME: one of [" << dt["JWT_USERS"] << "]" << std::endl;
+    std::cout << std::endl;
 
     app.port(port).bindaddr(host).run();
     return 0;

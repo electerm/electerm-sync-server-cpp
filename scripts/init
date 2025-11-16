@@ -1,6 +1,68 @@
 #!/bin/bash
 cd `dirname $0`
 cd ..
+
+echo "Checking for system dependencies..."
+
+# Check for cmake
+if ! command -v cmake &> /dev/null; then
+    echo "CMake not found. Installing..."
+    if command -v brew &> /dev/null; then
+        brew install cmake
+    elif command -v apt &> /dev/null; then
+        sudo apt update && sudo apt install -y cmake
+    elif command -v yum &> /dev/null; then
+        sudo yum install -y cmake
+    elif command -v dnf &> /dev/null; then
+        sudo dnf install -y cmake
+    else
+        echo "Please install CMake manually. See README.md for instructions."
+        exit 1
+    fi
+else
+    echo "CMake found."
+fi
+
+# Check for boost
+if ! pkg-config --exists boost_filesystem 2>/dev/null && ! [ -d "/usr/local/include/boost" ]; then
+    echo "Boost not found. Installing..."
+    if command -v brew &> /dev/null; then
+        brew install boost
+    elif command -v apt &> /dev/null; then
+        sudo apt install -y libboost-all-dev
+    elif command -v yum &> /dev/null; then
+        sudo yum install -y boost-devel
+    elif command -v dnf &> /dev/null; then
+        sudo dnf install -y boost-devel
+    else
+        echo "Please install Boost manually. See README.md for instructions."
+        exit 1
+    fi
+else
+    echo "Boost found."
+fi
+
+# Check for ASIO
+if ! [ -d "/usr/local/include/asio" ] && ! [ -d "/usr/include/asio" ]; then
+    echo "ASIO not found. Installing..."
+    if command -v brew &> /dev/null; then
+        brew install asio
+    elif command -v apt &> /dev/null; then
+        sudo apt install -y libasio-dev
+    elif command -v yum &> /dev/null; then
+        sudo yum install -y asio-devel
+    elif command -v dnf &> /dev/null; then
+        sudo dnf install -y asio-devel
+    else
+        echo "Please install ASIO manually. See README.md for instructions."
+        exit 1
+    fi
+else
+    echo "ASIO found."
+fi
+
+echo "Downloading project dependencies..."
+
 rm -rf src/include
 mkdir src/include
 # export http_proxy=socks5://127.0.0.1:1080
@@ -11,3 +73,5 @@ rm -rf Crow
 git clone --depth 1 https://github.com/Thalhammer/jwt-cpp.git
 cp -r jwt-cpp/include/* src/include/
 rm -rf jwt-cpp
+
+echo "Initialization complete!"
