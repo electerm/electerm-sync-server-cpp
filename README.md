@@ -13,22 +13,22 @@ A simple electerm data sync server.
 **macOS (with Homebrew):**
 
 ```bash
-brew install cmake boost asio
+brew install cmake boost asio sqlite3
 ```
 
 **Ubuntu/Debian:**
 
 ```bash
 sudo apt update
-sudo apt install cmake libboost-all-dev libasio-dev libssl-dev
+sudo apt install cmake libboost-all-dev libasio-dev libssl-dev libsqlite3-dev
 ```
 
 **CentOS/RHEL/Fedora:**
 
 ```bash
-sudo yum install cmake boost-devel asio-devel openssl-devel  # CentOS/RHEL
+sudo yum install cmake boost-devel asio-devel openssl-devel sqlite-devel  # CentOS/RHEL
 # or
-sudo dnf install cmake boost-devel asio-devel openssl-devel  # Fedora
+sudo dnf install cmake boost-devel asio-devel openssl-devel sqlite-devel  # Fedora
 ```
 
 ### Project Dependencies
@@ -94,7 +94,7 @@ In electerm sync settings, set custom sync server with:
 
 ## Write your own data store
 
-Take [src/file_store.hpp](src/file_store.hpp) as an example to implement your own read/write methods.
+Take [src/data_store.hpp](src/data_store.hpp) as an example to implement your own read/write methods.
 
 ## Sync server in other languages
 

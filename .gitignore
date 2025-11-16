@@ -42,3 +42,4 @@
 /Crow
 /picojson
 /jwt-cpp
+*.db

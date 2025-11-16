@@ -23,6 +23,8 @@ if(Boost_FOUND)
 endif()
 find_package(OpenSSL REQUIRED)
 include_directories(${OPENSSL_INCLUDE_DIR})
+find_package(SQLite3 REQUIRED)
+include_directories(${SQLite3_INCLUDE_DIRS})
 
 # Add the source files
 file(GLOB SOURCES "src/*.cpp")
@@ -30,4 +32,4 @@ file(GLOB SOURCES "src/*.cpp")
 
 # Create the executable
 add_executable(electerm_sync_app src/main.cpp)
-target_link_libraries(electerm_sync_app ${Boost_LIBRARIES} ${OPENSSL_LIBRARIES})
+target_link_libraries(electerm_sync_app ${Boost_LIBRARIES} ${OPENSSL_LIBRARIES} ${SQLite3_LIBRARIES})

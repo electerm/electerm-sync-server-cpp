@@ -13,22 +13,22 @@
 **macOS (使用 Homebrew):**
 
 ```bash
-brew install cmake boost asio
+brew install cmake boost asio sqlite3
 ```
 
 **Ubuntu/Debian:**
 
 ```bash
 sudo apt update
-sudo apt install cmake libboost-all-dev libasio-dev libssl-dev
+sudo apt install cmake libboost-all-dev libasio-dev libssl-dev libsqlite3-dev
 ```
 
 **CentOS/RHEL/Fedora:**
 
 ```bash
-sudo yum install cmake boost-devel asio-devel openssl-devel  # CentOS/RHEL
+sudo yum install cmake boost-devel asio-devel openssl-devel sqlite-devel  # CentOS/RHEL
 # 或
-sudo dnf install cmake boost-devel asio-devel openssl-devel  # Fedora
+sudo dnf install cmake boost-devel asio-devel openssl-devel sqlite-devel  # Fedora
 ```
 
 ### 项目依赖
@@ -94,7 +94,7 @@ server running at http://127.0.0.1:7837
 
 ## 编写自己的数据存储
 
-以 [src/file_store.hpp](src/file_store.hpp) 为例实现您自己的读写方法。
+以 [src/data_store.hpp](src/data_store.hpp) 为例实现您自己的读写方法。
 
 ## 其他语言的同步服务器
 

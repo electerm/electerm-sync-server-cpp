@@ -7,5 +7,5 @@ mkdir -p test-build
 cd test-build
 cmake ../test
 make -j12
-./test_file_store
+./test_data_store
 echo "Test succeed"
